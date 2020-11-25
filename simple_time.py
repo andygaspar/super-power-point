@@ -77,7 +77,6 @@ class Player:
                     self.markerIndex += 1
                 else:
                     if self.markerIndex == self.numMarkers - 1:
-                        print(self.markerIndex)
                         cap = self.set_frame(cap, self.markerIndex)
                         self.markerIndex += 1
 
