@@ -11,7 +11,7 @@ class MarkerReader2:
 
         if self.markers[0] != 0:
             self.markers = [0] + self.markers
-        if self.markers[-1] is not final_frame:
+        if self.markers[-1] != final_frame:
             self.markers = self.markers + [final_frame]
 
         self.numMarkers = len(self.markers)

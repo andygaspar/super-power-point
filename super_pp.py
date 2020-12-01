@@ -6,15 +6,17 @@ class Player:
 
     def __init__(self, filename: str, markersFilename: str):
         self.filename = filename
-        self.presentationName = "Presentazione"
+        self.presentationName = "ISTOP presentation"
 
         cap = cv2.VideoCapture(self.filename)
+        print(int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))
         self.fps = int(cap.get(5))
         self.markers = MarkerReader2(markersFilename, int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))
         self.markerList = self.markers.markers
         self.numMarkers = self.markers.numMarkers
         self.markerIndex = 0
         self.fullScreen = False
+        print(self.markerList)
 
         self.width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
         self.height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
@@ -33,7 +35,7 @@ class Player:
         if cap is not None:
             cap.release()
         cap = cv2.VideoCapture(self.filename)
-        frame_num = self.markerList[marker_index] if marker_index != self.numMarkers-1 \
+        frame_num = self.markerList[marker_index]-1 if marker_index != self.numMarkers-1 \
             else self.markerList[marker_index]-1
         cap.set(cv2.CAP_PROP_POS_FRAMES, frame_num)
         ret, frame = cap.read()
@@ -99,6 +101,6 @@ class Player:
 
 
 
-presentation = Player("../test.mp4", '../presentazione.csv')
+presentation = Player("../presentation 720 ok.mp4", '../presentation.csv')
 presentation.start_presentation()
 

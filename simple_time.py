@@ -8,7 +8,6 @@ class Player:
     def __init__(self, filename: str, markersFilename: str):
         self.filename = filename
         self.presentationName = "Presentazione"
-
         cap = cv2.VideoCapture(self.filename)
         self.fps = int(cap.get(5))
         self.markers = MarkerReader(self.fps, markersFilename, int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))
