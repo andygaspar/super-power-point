@@ -6,7 +6,7 @@ class Player:
 
     def __init__(self, filename: str, markersFilename: str):
         self.filename = filename
-        self.presentationName = "ISTOP presentation"
+        self.presentationName = "AI2S"
 
         cap = cv2.VideoCapture(self.filename)
         print(int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))
@@ -99,8 +99,6 @@ class Player:
                 if key == ord('f'):
                     self.set_unset_full_screen()
 
-
-
-presentation = Player("../presentation 720 ok.mp4", '../presentation.csv')
+presentation = Player("videos_markers/ai2s.mp4",'videos_markers/ai2s.csv')
 presentation.start_presentation()
 

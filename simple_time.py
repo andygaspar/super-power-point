@@ -99,6 +99,6 @@ class Player:
 
 
 
-presentation = Player("../test presentazione.mp4", '../test presentazione.csv')
+presentation = Player("/videos_markers/presentation 720 ok.mp4", '/videos_markers/presentazione.csv')
 presentation.start_presentation()
 
