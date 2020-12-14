@@ -9,14 +9,14 @@ class Player:
         self.presentationName = "AI2S"
 
         cap = cv2.VideoCapture(self.filename)
-        print(int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))
+        # print(int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))
         self.fps = int(cap.get(5))
         self.markers = MarkerReader2(markersFilename, int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))
         self.markerList = self.markers.markers
         self.numMarkers = self.markers.numMarkers
         self.markerIndex = 0
         self.fullScreen = False
-        print(self.markerList)
+        # print(self.markerList)
 
         self.width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
         self.height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
