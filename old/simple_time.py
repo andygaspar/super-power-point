@@ -1,4 +1,4 @@
-from cv2 import cv2
+import cv2
 from marker_reader import MarkerReader
 from marker_reader2 import MarkerReader2
 
@@ -10,7 +10,7 @@ class Player:
         self.presentationName = "Presentazione"
         cap = cv2.VideoCapture(self.filename)
         self.fps = int(cap.get(5))
-        self.markers = MarkerReader(self.fps, markersFilename, int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))
+        self.markers = MarkerReader2(self.fps, markersFilename, int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))
         self.markerList = self.markers.markers
         self.numMarkers = self.markers.numMarkers
         self.markerIndex = 0
@@ -99,6 +99,6 @@ class Player:
 
 
 
-presentation = Player("/videos_markers/presentation 720 ok.mp4", '/videos_markers/presentazione.csv')
+presentation = Player("../test/video.mp4", 'test/markers.csv')
 presentation.start_presentation()
 

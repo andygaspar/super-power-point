@@ -5,7 +5,7 @@ class MarkerReader2:
     def __init__(self, marker_filename, final_frame):
         self.df = pd.read_csv(marker_filename)
         # self.markers = self.convert_markers(self.df["Attacco"].tolist(), fps)
-        self.markers = self.df['0'].to_numpy()
+        self.markers = self.df['1'].to_numpy()
         self.markers = self.markers+1
         self.markers = list(self.markers)
 

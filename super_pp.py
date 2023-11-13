@@ -1,4 +1,4 @@
-from cv2 import cv2
+import cv2
 from marker_reader2 import MarkerReader2
 
 
@@ -57,11 +57,11 @@ class Player:
         while cap.isOpened() and i < self.markerList[marker_index + 1]:
             ret, frame = cap.read()
             cv2.waitKey(self.fps)
-            if ret:
+            if ret and frame is not None:
                 cv2.imshow(self.presentationName, frame)
             else:
                 break
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            if cv2.waitKey(10) & 0xFF == ord('q'):
                 break
             i += 1
         return cap
@@ -72,7 +72,8 @@ class Player:
         cap = self.set_frame(None, 0)
         while not end_presentation:
             key = cv2.waitKey()
-            if key == ord(' '):
+            print(key)
+            if key == ord(' ') or key == 86:
                 if self.markerIndex < self.numMarkers - 1:
                     cap = self.play(cap, self.markerIndex)
                     self.markerIndex += 1
@@ -85,20 +86,21 @@ class Player:
                 if key == 83:
                     if self.markerIndex < self.numMarkers - 1:
                         self.markerIndex += 1
+
                         cap = self.set_frame(cap, self.markerIndex)
 
-                if key == 81:
+                if key == 81 or key == 85:
                     if self.markerIndex > 0:
                         self.markerIndex -= 1
                         cap = self.set_frame(cap, self.markerIndex)
 
-                if key == 27:
+                if key == ord('q'):
                     self.quit(cap)
                     end_presentation = True
 
                 if key == ord('f'):
                     self.set_unset_full_screen()
 
-presentation = Player("videos_markers/ai2s.mp4",'videos_markers/ai2s.csv')
+presentation = Player("AItalk.mp4",'ai_talk_markers.csv')
 presentation.start_presentation()
 
